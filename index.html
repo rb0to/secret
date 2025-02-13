@@ -209,6 +209,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- 8-bit font -->
 </head>
 <body>
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="https://www.youtube.com/watch?v=4adZ7AguVcw&ab_channel=CreativeChaos" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Sound Effects -->
+  <audio id="button-sound">
+    <source src="button-click.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="tulip-sound">
+    <source src="tulip-fall.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loading-text">Loading...</div>
@@ -241,6 +258,18 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Background Music
+      const backgroundMusic = document.getElementById('background-music');
+      backgroundMusic.volume = 0.5; // Adjust volume (0.0 to 1.0)
+      backgroundMusic.play(); // Autoplay background music
+
+      // Sound Effects
+      const buttonSound = document.getElementById('button-sound');
+      buttonSound.volume = 0.3; // Adjust volume (0.0 to 1.0)
+
+      const tulipSound = document.getElementById('tulip-sound');
+      tulipSound.volume = 0.2; // Adjust volume (0.0 to 1.0)
+
       // Simulate loading screen
       const loadingScreen = document.querySelector('.loading-screen');
       const loadingProgress = document.querySelector('.loading-progress');
@@ -283,8 +312,8 @@
         const buttonsContainer = noButton.parentElement;
         const containerRect = buttonsContainer.getBoundingClientRect();
 
-        const maxX = containerRect.width 
-        const maxY = containerRect.height 
+        const maxX = containerRect.width - noButton.offsetWidth;
+        const maxY = containerRect.height - noButton.offsetHeight;
 
         const x = Math.random() * maxX;
         const y = Math.random() * maxY;
@@ -296,6 +325,7 @@
       // Redirect to gift page when "Yes" is clicked
       const yesButton = document.getElementById('yes');
       yesButton.addEventListener('click', () => {
+        buttonSound.play(); // Play button sound effect
         mainPage.style.display = 'none';
         giftPage.style.display = 'block';
 
@@ -318,9 +348,11 @@
         tulip.style.left = `${Math.random() * window.innerWidth}px`;
         tulip.style.animationDuration = `${Math.random() * 3 + 2}s`;
         document.body.appendChild(tulip);
+        tulipSound.play(); // Play tulip sound effect
         setTimeout(() => tulip.remove(), 5000);
-        setInterval(createTulip, 500);
       }
+
+      setInterval(createTulip, 500);
     });
   </script>
 </body>
