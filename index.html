@@ -293,6 +293,13 @@
         noButton.style.top = `${y}px`;
       }
 
+
+      // Redirect to gift page when "Yes" is clicked
+      const yesButton = document.getElementById('yes');
+      yesButton.addEventListener('click', () => {
+        mainPage.style.display = 'none';
+        giftPage.style.display = 'block';
+
         // Attach the redirectToLink function to the gift box after the gift page is displayed
         const giftWrap = document.querySelector('.gift-wrap');
         giftWrap.addEventListener('click', redirectToLink);
@@ -303,7 +310,6 @@
         // Edit this link to your desired URL
         window.location.href = "https://example.com"; // Replace with your custom link
       }
-      });
 
       // Redirect to custom link when gift box is clicked
       function redirectToLink() {
