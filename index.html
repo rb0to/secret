@@ -283,8 +283,8 @@
         const buttonsContainer = noButton.parentElement;
         const containerRect = buttonsContainer.getBoundingClientRect();
 
-        const maxX = containerRect.width - noButton.offsetWidth;
-        const maxY = containerRect.height - noButton.offsetHeight;
+        const maxX = containerRect.width -
+        const maxY = containerRect.height
 
         const x = Math.random() * maxY;
         const y = Math.random() * maxX;
@@ -293,11 +293,16 @@
         noButton.style.top = `${y}px`;
       }
 
-      // Redirect to gift page when "Yes" is clicked
-      const yesButton = document.getElementById('yes');
-      yesButton.addEventListener('click', () => {
-        mainPage.style.display = 'none';
-        giftPage.style.display = 'block';
+        // Attach the redirectToLink function to the gift box after the gift page is displayed
+        const giftWrap = document.querySelector('.gift-wrap');
+        giftWrap.addEventListener('click', redirectToLink);
+      });
+
+      // Redirect to custom link when gift box is clicked
+      function redirectToLink() {
+        // Edit this link to your desired URL
+        window.location.href = "https://example.com"; // Replace with your custom link
+      }
       });
 
       // Redirect to custom link when gift box is clicked
