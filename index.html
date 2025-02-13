@@ -298,6 +298,10 @@
       yesButton.addEventListener('click', () => {
         mainPage.style.display = 'none';
         giftPage.style.display = 'block';
+
+        // Attach the redirectToLink function to the gift box after the gift page is displayed
+        const giftWrap = document.querySelector('.gift-wrap');
+        giftWrap.addEventListener('click', redirectToLink);
       });
 
       // Redirect to custom link when gift box is clicked
